@@ -17,9 +17,8 @@ RUN yarn install --production
 CMD ["node", "src/index.js"]
 ```
 
-`# syntax=docker/dockerfile:1`
-
-Dockerfile의 syntax 명령어로 [BuildKit](https://docs.docker.com/engine/reference/builder/#buildkit) 백엔드를 사용할 때만 사용할 수 있으며 클래식 빌더 백엔드를 사용할 때는 무시된다. 그렇다면 BuildKit이란 무엇인가? 간단하게 정리 하면 표준 Docker 명령어를 업그레이드 한 버전이라 볼 수 있다. 기존 명령어에 비해서 상당한 체감을 줄만한 요소들이 많으니 반드시 활성화 해서 사용하는게 좋을듯하다. ([활성화 방법]( https://brianchristner.io/what-is-docker-buildkit)) BuildKit에 대해서는 추가적으로 공부를 더하고 정리할 예정이다.
+`# syntax=docker/dockerfile:1`  
+Parser Directives(파서 지시문)의 syntax diriective(구문 지시문) 이다. Dockerfile 빌드하는데 사용할 Dockerfile syntax 위치와 버전을 정의한다. [BuildKit](https://docs.docker.com/engine/reference/builder/#buildkit) 백엔드를 사용할 때만 사용할 수 있으며 클래식 빌더 백엔드를 사용할 때는 무시된다. 그렇다면 BuildKit이란 무엇인가? 간단하게 정리 하면 표준 Docker 명령어를 업그레이드 한 버전이라 볼 수 있다. 기존 명령어에 비해서 상당한 체감을 줄만한 요소들이 많으니 반드시 활성화 해서 사용하는게 좋을듯하다. ([활성화 방법]( https://brianchristner.io/what-is-docker-buildkit)) BuildKit에 대해서는 추가적으로 공부를 더하고 정리할 예정이다.
 
 다시 돌아와서 해당 구문을 사용하는 이유는 무엇일까? 공식 문서를 참조 하면 다음과 같다.
 
@@ -60,7 +59,7 @@ docker build -t actionmandocker/docker-tutorial .
 해당 이미지의 tag를 지정하기 위한 옵션이다.
 
 `.`  
-Dockerfile의 위치를 나타낸다.
+context를 지정한 것으로 docker build process는 context내 모든 파일들을 접근할 수 있다. __Dockerfile__ 의 경우 context내에 위치 시킨다.
 
 이미지가 생성되었다면 컨테이너를 시작해보자.
 
